@@ -7,8 +7,243 @@
 #include "include/gemmini.h"
 #include "include/gemmini_nn.h"
 
+#include "bert_base_cased_weights.h"
 // Note: For self-attention, "enc_out" should be the same as "input".
 // Note: "compression_factor" should be 1 for most use cases.
+
+TransformerEncoderLayerParameters encoder_layers[12] = {
+    // Layer 0
+    {
+        .Wq = encoder_layer_0_attention_self_query_weight,
+        .Wq_b = encoder_layer_0_attention_self_query_bias,
+        .Wk = encoder_layer_0_attention_self_key_weight,
+        .Wk_b = encoder_layer_0_attention_self_key_bias,
+        .Wv = encoder_layer_0_attention_self_value_weight,
+        .Wv_b = encoder_layer_0_attention_self_value_bias,
+        .Wo = encoder_layer_0_attention_output_dense_weight,
+        .Wo_b = encoder_layer_0_attention_output_dense_bias,
+        .LN1_w = encoder_layer_0_attention_output_LayerNorm_weight,
+        .LN1_b = encoder_layer_0_attention_output_LayerNorm_bias,
+        .FF1_w = encoder_layer_0_intermediate_dense_weight,
+        .FF1_b = encoder_layer_0_intermediate_dense_bias,
+        .FF2_w = encoder_layer_0_output_dense_weight,
+        .FF2_b = encoder_layer_0_output_dense_bias,
+        .LN2_w = encoder_layer_0_output_LayerNorm_weight,
+        .LN2_b = encoder_layer_0_output_LayerNorm_bias,
+    },
+    // Layer 1
+    {
+        .Wq = encoder_layer_1_attention_self_query_weight,
+        .Wq_b = encoder_layer_1_attention_self_query_bias,
+        .Wk = encoder_layer_1_attention_self_key_weight,
+        .Wk_b = encoder_layer_1_attention_self_key_bias,
+        .Wv = encoder_layer_1_attention_self_value_weight,
+        .Wv_b = encoder_layer_1_attention_self_value_bias,
+        .Wo = encoder_layer_1_attention_output_dense_weight,
+        .Wo_b = encoder_layer_1_attention_output_dense_bias,
+        .LN1_w = encoder_layer_1_attention_output_LayerNorm_weight,
+        .LN1_b = encoder_layer_1_attention_output_LayerNorm_bias,
+        .FF1_w = encoder_layer_1_intermediate_dense_weight,
+        .FF1_b = encoder_layer_1_intermediate_dense_bias,
+        .FF2_w = encoder_layer_1_output_dense_weight,
+        .FF2_b = encoder_layer_1_output_dense_bias,
+        .LN2_w = encoder_layer_1_output_LayerNorm_weight,
+        .LN2_b = encoder_layer_1_output_LayerNorm_bias,
+    },
+    // Layer 2
+    {
+        .Wq = encoder_layer_2_attention_self_query_weight,
+        .Wq_b = encoder_layer_2_attention_self_query_bias,
+        .Wk = encoder_layer_2_attention_self_key_weight,
+        .Wk_b = encoder_layer_2_attention_self_key_bias,
+        .Wv = encoder_layer_2_attention_self_value_weight,
+        .Wv_b = encoder_layer_2_attention_self_value_bias,
+        .Wo = encoder_layer_2_attention_output_dense_weight,
+        .Wo_b = encoder_layer_2_attention_output_dense_bias,
+        .LN1_w = encoder_layer_2_attention_output_LayerNorm_weight,
+        .LN1_b = encoder_layer_2_attention_output_LayerNorm_bias,
+        .FF1_w = encoder_layer_2_intermediate_dense_weight,
+        .FF1_b = encoder_layer_2_intermediate_dense_bias,
+        .FF2_w = encoder_layer_2_output_dense_weight,
+        .FF2_b = encoder_layer_2_output_dense_bias,
+        .LN2_w = encoder_layer_2_output_LayerNorm_weight,
+        .LN2_b = encoder_layer_2_output_LayerNorm_bias,
+    },
+    // Layer 3
+    {
+        .Wq = encoder_layer_3_attention_self_query_weight,
+        .Wq_b = encoder_layer_3_attention_self_query_bias,
+        .Wk = encoder_layer_3_attention_self_key_weight,
+        .Wk_b = encoder_layer_3_attention_self_key_bias,
+        .Wv = encoder_layer_3_attention_self_value_weight,
+        .Wv_b = encoder_layer_3_attention_self_value_bias,
+        .Wo = encoder_layer_3_attention_output_dense_weight,
+        .Wo_b = encoder_layer_3_attention_output_dense_bias,
+        .LN1_w = encoder_layer_3_attention_output_LayerNorm_weight,
+        .LN1_b = encoder_layer_3_attention_output_LayerNorm_bias,
+        .FF1_w = encoder_layer_3_intermediate_dense_weight,
+        .FF1_b = encoder_layer_3_intermediate_dense_bias,
+        .FF2_w = encoder_layer_3_output_dense_weight,
+        .FF2_b = encoder_layer_3_output_dense_bias,
+        .LN2_w = encoder_layer_3_output_LayerNorm_weight,
+        .LN2_b = encoder_layer_3_output_LayerNorm_bias,
+    },
+    // Layer 4
+    {
+        .Wq = encoder_layer_4_attention_self_query_weight,
+        .Wq_b = encoder_layer_4_attention_self_query_bias,
+        .Wk = encoder_layer_4_attention_self_key_weight,
+        .Wk_b = encoder_layer_4_attention_self_key_bias,
+        .Wv = encoder_layer_4_attention_self_value_weight,
+        .Wv_b = encoder_layer_4_attention_self_value_bias,
+        .Wo = encoder_layer_4_attention_output_dense_weight,
+        .Wo_b = encoder_layer_4_attention_output_dense_bias,
+        .LN1_w = encoder_layer_4_attention_output_LayerNorm_weight,
+        .LN1_b = encoder_layer_4_attention_output_LayerNorm_bias,
+        .FF1_w = encoder_layer_4_intermediate_dense_weight,
+        .FF1_b = encoder_layer_4_intermediate_dense_bias,
+        .FF2_w = encoder_layer_4_output_dense_weight,
+        .FF2_b = encoder_layer_4_output_dense_bias,
+        .LN2_w = encoder_layer_4_output_LayerNorm_weight,
+        .LN2_b = encoder_layer_4_output_LayerNorm_bias,
+    },
+    // Layer 5
+    {
+        .Wq = encoder_layer_5_attention_self_query_weight,
+        .Wq_b = encoder_layer_5_attention_self_query_bias,
+        .Wk = encoder_layer_5_attention_self_key_weight,
+        .Wk_b = encoder_layer_5_attention_self_key_bias,
+        .Wv = encoder_layer_5_attention_self_value_weight,
+        .Wv_b = encoder_layer_5_attention_self_value_bias,
+        .Wo = encoder_layer_5_attention_output_dense_weight,
+        .Wo_b = encoder_layer_5_attention_output_dense_bias,
+        .LN1_w = encoder_layer_5_attention_output_LayerNorm_weight,
+        .LN1_b = encoder_layer_5_attention_output_LayerNorm_bias,
+        .FF1_w = encoder_layer_5_intermediate_dense_weight,
+        .FF1_b = encoder_layer_5_intermediate_dense_bias,
+        .FF2_w = encoder_layer_5_output_dense_weight,
+        .FF2_b = encoder_layer_5_output_dense_bias,
+        .LN2_w = encoder_layer_5_output_LayerNorm_weight,
+        .LN2_b = encoder_layer_5_output_LayerNorm_bias,
+    },
+    // Layer 6
+    {
+        .Wq = encoder_layer_6_attention_self_query_weight,
+        .Wq_b = encoder_layer_6_attention_self_query_bias,
+        .Wk = encoder_layer_6_attention_self_key_weight,
+        .Wk_b = encoder_layer_6_attention_self_key_bias,
+        .Wv = encoder_layer_6_attention_self_value_weight,
+        .Wv_b = encoder_layer_6_attention_self_value_bias,
+        .Wo = encoder_layer_6_attention_output_dense_weight,
+        .Wo_b = encoder_layer_6_attention_output_dense_bias,
+        .LN1_w = encoder_layer_6_attention_output_LayerNorm_weight,
+        .LN1_b = encoder_layer_6_attention_output_LayerNorm_bias,
+        .FF1_w = encoder_layer_6_intermediate_dense_weight,
+        .FF1_b = encoder_layer_6_intermediate_dense_bias,
+        .FF2_w = encoder_layer_6_output_dense_weight,
+        .FF2_b = encoder_layer_6_output_dense_bias,
+        .LN2_w = encoder_layer_6_output_LayerNorm_weight,
+        .LN2_b = encoder_layer_6_output_LayerNorm_bias,
+    },
+    // Layer 7
+    {
+        .Wq = encoder_layer_7_attention_self_query_weight,
+        .Wq_b = encoder_layer_7_attention_self_query_bias,
+        .Wk = encoder_layer_7_attention_self_key_weight,
+        .Wk_b = encoder_layer_7_attention_self_key_bias,
+        .Wv = encoder_layer_7_attention_self_value_weight,
+        .Wv_b = encoder_layer_7_attention_self_value_bias,
+        .Wo = encoder_layer_7_attention_output_dense_weight,
+        .Wo_b = encoder_layer_7_attention_output_dense_bias,
+        .LN1_w = encoder_layer_7_attention_output_LayerNorm_weight,
+        .LN1_b = encoder_layer_7_attention_output_LayerNorm_bias,
+        .FF1_w = encoder_layer_7_intermediate_dense_weight,
+        .FF1_b = encoder_layer_7_intermediate_dense_bias,
+        .FF2_w = encoder_layer_7_output_dense_weight,
+        .FF2_b = encoder_layer_7_output_dense_bias,
+        .LN2_w = encoder_layer_7_output_LayerNorm_weight,
+        .LN2_b = encoder_layer_7_output_LayerNorm_bias,
+    },
+    // Layer 8
+    {
+        .Wq = encoder_layer_8_attention_self_query_weight,
+        .Wq_b = encoder_layer_8_attention_self_query_bias,
+        .Wk = encoder_layer_8_attention_self_key_weight,
+        .Wk_b = encoder_layer_8_attention_self_key_bias,
+        .Wv = encoder_layer_8_attention_self_value_weight,
+        .Wv_b = encoder_layer_8_attention_self_value_bias,
+        .Wo = encoder_layer_8_attention_output_dense_weight,
+        .Wo_b = encoder_layer_8_attention_output_dense_bias,
+        .LN1_w = encoder_layer_8_attention_output_LayerNorm_weight,
+        .LN1_b = encoder_layer_8_attention_output_LayerNorm_bias,
+        .FF1_w = encoder_layer_8_intermediate_dense_weight,
+        .FF1_b = encoder_layer_8_intermediate_dense_bias,
+        .FF2_w = encoder_layer_8_output_dense_weight,
+        .FF2_b = encoder_layer_8_output_dense_bias,
+        .LN2_w = encoder_layer_8_output_LayerNorm_weight,
+        .LN2_b = encoder_layer_8_output_LayerNorm_bias,
+    },
+    // Layer 9
+    {
+        .Wq = encoder_layer_9_attention_self_query_weight,
+        .Wq_b = encoder_layer_9_attention_self_query_bias,
+        .Wk = encoder_layer_9_attention_self_key_weight,
+        .Wk_b = encoder_layer_9_attention_self_key_bias,
+        .Wv = encoder_layer_9_attention_self_value_weight,
+        .Wv_b = encoder_layer_9_attention_self_value_bias,
+        .Wo = encoder_layer_9_attention_output_dense_weight,
+        .Wo_b = encoder_layer_9_attention_output_dense_bias,
+        .LN1_w = encoder_layer_9_attention_output_LayerNorm_weight,
+        .LN1_b = encoder_layer_9_attention_output_LayerNorm_bias,
+        .FF1_w = encoder_layer_9_intermediate_dense_weight,
+        .FF1_b = encoder_layer_9_intermediate_dense_bias,
+        .FF2_w = encoder_layer_9_output_dense_weight,
+        .FF2_b = encoder_layer_9_output_dense_bias,
+        .LN2_w = encoder_layer_9_output_LayerNorm_weight,
+        .LN2_b = encoder_layer_9_output_LayerNorm_bias,
+    },
+    // Layer 10
+    {
+        .Wq = encoder_layer_10_attention_self_query_weight,
+        .Wq_b = encoder_layer_10_attention_self_query_bias,
+        .Wk = encoder_layer_10_attention_self_key_weight,
+        .Wk_b = encoder_layer_10_attention_self_key_bias,
+        .Wv = encoder_layer_10_attention_self_value_weight,
+        .Wv_b = encoder_layer_10_attention_self_value_bias,
+        .Wo = encoder_layer_10_attention_output_dense_weight,
+        .Wo_b = encoder_layer_10_attention_output_dense_bias,
+        .LN1_w = encoder_layer_10_attention_output_LayerNorm_weight,
+        .LN1_b = encoder_layer_10_attention_output_LayerNorm_bias,
+        .FF1_w = encoder_layer_10_intermediate_dense_weight,
+        .FF1_b = encoder_layer_10_intermediate_dense_bias,
+        .FF2_w = encoder_layer_10_output_dense_weight,
+        .FF2_b = encoder_layer_10_output_dense_bias,
+        .LN2_w = encoder_layer_10_output_LayerNorm_weight,
+        .LN2_b = encoder_layer_10_output_LayerNorm_bias,
+    },
+    // Layer 11
+    {
+        .Wq = encoder_layer_11_attention_self_query_weight,
+        .Wq_b = encoder_layer_11_attention_self_query_bias,
+        .Wk = encoder_layer_11_attention_self_key_weight,
+        .Wk_b = encoder_layer_11_attention_self_key_bias,
+        .Wv = encoder_layer_11_attention_self_value_weight,
+        .Wv_b = encoder_layer_11_attention_self_value_bias,
+        .Wo = encoder_layer_11_attention_output_dense_weight,
+        .Wo_b = encoder_layer_11_attention_output_dense_bias,
+        .LN1_w = encoder_layer_11_attention_output_LayerNorm_weight,
+        .LN1_b = encoder_layer_11_attention_output_LayerNorm_bias,
+        .FF1_w = encoder_layer_11_intermediate_dense_weight,
+        .FF1_b = encoder_layer_11_intermediate_dense_bias,
+        .FF2_w = encoder_layer_11_output_dense_weight,
+        .FF2_b = encoder_layer_11_output_dense_bias,
+        .LN2_w = encoder_layer_11_output_LayerNorm_weight,
+        .LN2_b = encoder_layer_11_output_LayerNorm_bias,
+    },
+};
+
+
+
 void attention(int hidden_dim, int expansion_dim, int num_heads, int seq_len,
         int compression_factor,
 
@@ -37,7 +272,7 @@ void attention(int hidden_dim, int expansion_dim, int num_heads, int seq_len,
     for (int i = 0; i < qkv_matmuls_n; i++) {
         const elem_t * qkv_weights[] = {Wq, Wk, Wv};
         const elem_t * qkv_ins[] = {input, enc_out, enc_out};
-        const acc_t * qkv_bs[] = {Wq_b, Wk_b, Wk_b};
+        const acc_t * qkv_bs[] = {Wq_b, Wk_b, Wv_b};
         elem_t * qkv_outs[] = {Q_buf, K_buf, V_buf};
 
         const elem_t * qkv_w = qkv_weights[i];
@@ -225,36 +460,42 @@ uint64_t encoder_decoder(
 
     uint64_t start = read_cycles();
 
-    attention(hidden_dim, expansion_dim, num_heads, seq_len, compression_factor,
-        input, input,
-        out, resadd1_buf,
-        Wq, Wk, Wv, Wo,
+	for (int i = 0; i < 12; ++i) {
 
-        Wq_b, Wk_b, Wv_b,
-        Wo_b,
+		const TransformerEncoderLayerParameters *parameters = &encoder_layers[i];
 
-        Q_buf, K_buf, V_buf,
-        attn_buf, out_buf, out_buf_acc);
+		attention(hidden_dim, expansion_dim, num_heads, seq_len, compression_factor,
+			input, input,
+			out, resadd1_buf,
+			parameters->Wq, parameters->Wk, parameters->Wv, parameters->Wo,
 
-    if (!is_encoder) {
-        attention(hidden_dim, expansion_dim, cross_num_heads, seq_len, compression_factor,
-            resadd1_buf, enc_out,
-            out, resadd2_buf,
-            Wq_cross, Wk_cross, Wv_cross, Wo_cross,
+			parameters->Wq_b, parameters->Wk_b, parameters->Wv_b,
+			parameters->Wo_b,
 
-            Wq_cross_b, Wk_cross_b, Wv_cross_b,
-            Wo_cross_b,
+			Q_buf, K_buf, V_buf,
+			attn_buf, out_buf, out_buf_acc);
 
-            Q_buf, K_buf, V_buf,
-            attn_buf, out_buf, out_buf_acc);
-    }
+		if (!is_encoder) {
+			attention(hidden_dim, expansion_dim, cross_num_heads, seq_len, compression_factor,
+				resadd1_buf, enc_out,
+				out, resadd2_buf,
+				Wq_cross, Wk_cross, Wv_cross, Wo_cross,
 
-    ffn(hidden_dim, expansion_dim, seq_len,
-        is_encoder ? resadd1_buf : resadd2_buf,
-        out,
-        ff1_w, ff2_w,
-        ff1_b, ff2_b,
-        out_buf, out_buf_acc);
+				Wq_cross_b, Wk_cross_b, Wv_cross_b,
+				Wo_cross_b,
+
+				Q_buf, K_buf, V_buf,
+				attn_buf, out_buf, out_buf_acc);
+		}
+
+		ffn(hidden_dim, expansion_dim, seq_len,
+			is_encoder ? resadd1_buf : resadd2_buf,
+			out,
+			parameters->FF1_w, parameters->FF2_w,
+			parameters->FF1_b, parameters->FF2_b,
+			out_buf, out_buf_acc);
+
+		}
 
     uint64_t end = read_cycles();
 
@@ -334,4 +575,3 @@ int main (int argc, char * argv[]) {
 
     exit(0);
 }
-

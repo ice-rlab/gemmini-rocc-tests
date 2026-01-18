@@ -1279,7 +1279,7 @@ _STATIC void tiled_matmul_auto(size_t dim_I, size_t dim_J, size_t dim_K,
 #define db_max_tile_i_j ((size_t)sqrt(db_mats_in_acc))
 #define db_max_tile_k (db_mats_in_partition / db_max_tile_i_j)
 
-    const size_t dim_I_padded = (dim_I / DIM + (dim_I % DIM != 0)) * DIM; //essientially rounds dim_i up to the next multiple of DIM
+    const size_t dim_I_padded = (dim_I / DIM + (dim_I % DIM != 0)) * DIM;
     const size_t dim_J_padded = (dim_J / DIM + (dim_J % DIM != 0)) * DIM;
     const size_t dim_K_padded = (dim_K / DIM + (dim_K % DIM != 0)) * DIM;
 
@@ -1348,7 +1348,7 @@ _STATIC void tiled_matmul_auto(size_t dim_I, size_t dim_J, size_t dim_K,
     printf("spad_row utilization: %d%%\n", (spad_rows * 100) / max_spad_rows);
     printf("acc_row utilization: %d%%\n\n", (acc_rows * 100) / max_acc_rows);
 
-    //exit(EXIT_SUCCESS);
+    exit(EXIT_SUCCESS);
 #endif
 #endif
 

@@ -8,8 +8,8 @@
 #define DIM 16
 #define ADDR_LEN 32
 #define BANK_NUM 4
-#define BANK_ROWS 4096
-#define ACC_ROWS 1024
+#define BANK_ROWS 32
+#define ACC_ROWS 32
 #define MAX_BYTES 64
 #define MAX_BLOCK_LEN (MAX_BYTES/(DIM*1))
 #define MAX_BLOCK_LEN_ACC (MAX_BYTES/(DIM*4))
@@ -81,8 +81,5 @@ typedef uint32_t acc_scale_t_bits;
 #define ACC_READ_FULL_WIDTH
 
 #define HAS_FIRST_LAYER_OPTIMIZATIONS
-
-#define HAS_NORMALIZATIONS
-#define NORM_STAT_IDS 2
 
 #endif // GEMMINI_PARAMS_H

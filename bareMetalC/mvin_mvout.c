@@ -38,13 +38,13 @@ int main() {
         In[n][i][j] = i*DIM + j + n;
 
   for (size_t n = 0; n < N; ++n) {
-    // printf("Mvin %d\n", n);
+    printf("Mvin %d\n", n);
     gemmini_mvin(In[n], n*DIM);
-    // printf("Mvout %d\n", n);
+    printf("Mvout %d\n", n);
     gemmini_mvout(Out[n], n*DIM);
   }
 
-  // printf("Fence");
+  printf("Fence");
   gemmini_fence();
 
   for (size_t n = 0; n < N; ++n)
@@ -57,6 +57,8 @@ int main() {
 
       exit(1);
     }
+
+  printf("PASS");
 
   exit(0);
 }

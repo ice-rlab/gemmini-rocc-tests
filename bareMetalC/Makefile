@@ -1,6 +1,7 @@
 include $(abs_top_srcdir)/Makefrag
 
 tests = \
+	my_matmul \
 	mvin_mvout \
 	mvin_mvout_zeros \
 	mvin_mvout_stride \
@@ -57,6 +58,17 @@ tests = \
 	global_average \
 	gemmini_counter \
 	template \
+	basic_tiled_matmul \
+	dual_matmul \
+	dual_matmul_scaling \
+	basic_tiled_matmul_scaling_fp \
+	basic_tiled_matmul_scaling \
+	record_loadin_time \
+	record_loadin_time_new \
+	mvin_mvout_counters \
+	mvin_mvout_block_counters \
+	mvin_mvout_both_ways_counters \
+	mvin_mvout_acc_counters \
 
 tests_baremetal = $(tests:=-baremetal)
 
@@ -114,9 +126,15 @@ CFLAGS_BAREMETAL := \
 	-T $(BENCH_COMMON)/test.ld \
 	-DBAREMETAL=1 \
 
-all: $(tests_baremetal) $(tests_linux) $(tests_pk)
+FP_ARRAY_DIM ?= 16
+
+all: $(tests_baremetal) $(tests_linux) $(tests_pk) basic_tiled_matmul_scaling_fp-baremetal-$(FP_ARRAY_DIM)
 
 vpath %.c $(src_dir)
+
+basic_tiled_matmul_scaling_fp-baremetal-$(FP_ARRAY_DIM): basic_tiled_matmul_scaling_fp.c $(GEMMINI_HEADERS)
+	$(CC_BAREMETAL) $(CFLAGS_BAREMETAL) $< $(LFLAGS) -o $@ \
+		$(wildcard $(BENCH_COMMON)/*.c) $(wildcard $(BENCH_COMMON)/*.S) $(LIBS) -DFP_ARRAY_DIM=$(FP_ARRAY_DIM)
 
 %-baremetal: %.c $(GEMMINI_HEADERS)
 	$(CC_BAREMETAL) $(CFLAGS_BAREMETAL) $< $(LFLAGS) -o $@ \
