@@ -5,3 +5,4 @@ autom4te.cache
 configure
 .ipynb_checkpoints
 *.pyc
+transformers/bert_base_cased_weights.h
